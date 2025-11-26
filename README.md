@@ -4,7 +4,7 @@
 [![iOS](https://img.shields.io/badge/iOS-26.0+-007AFF.svg?style=flat&logo=apple)](https://developer.apple.com/ios/)
 [![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS-lightgrey.svg)](https://developer.apple.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Author](https://img.shields.io/badge/Author-Dambert%20Muñoz-blue.svg)](https://github.com/dambertmunoz)
+[![Author](https://img.shields.io/badge/Author-Dambert%20Muñoz-blue.svg)](https://dambertmunoz.com)
 
 > **Dambert Muñoz** | Senior iOS Swift Developer | 12+ years experience
 
@@ -255,10 +255,12 @@ From ~40 lines to ~10 lines. Pure SwiftUI.
 
 **Dambert Muñoz**
 
-- Senior iOS Swift Developer | 12+ years experience
-- Email: dmsantillana2705@gmail.com
-- [LinkedIn](https://linkedin.com/in/dambert-m-4b772397)
-- [GitHub](https://github.com/dambertmunoz)
+Senior iOS Swift Developer | 12+ years experience
+
+- 🌐 [dambertmunoz.com](https://dambertmunoz.com)
+- 💼 [LinkedIn](https://linkedin.com/in/dambert-m-4b772397)
+- 🐙 [GitHub](https://github.com/dambertmunoz)
+- 📧 dmsantillana2705@gmail.com
 
 ## License
 
