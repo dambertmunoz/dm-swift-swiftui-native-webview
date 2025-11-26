@@ -7,6 +7,7 @@
 /// demonstrating the expected API patterns.
 
 import SwiftUI
+import WebKit
 
 // MARK: - WebView
 
@@ -115,11 +116,9 @@ public final class WebViewProxy: ObservableObject {
     }
 }
 
-// MARK: - WebViewRepresentable (Internal)
+// MARK: - WebViewRepresentable
 
-#if canImport(UIKit)
-import WebKit
-
+#if os(iOS)
 struct WebViewRepresentable: UIViewRepresentable {
     let url: URL
     @Binding var state: WebViewState
@@ -173,9 +172,6 @@ struct WebViewRepresentable: UIViewRepresentable {
     }
 }
 #else
-import AppKit
-import WebKit
-
 struct WebViewRepresentable: NSViewRepresentable {
     let url: URL
     @Binding var state: WebViewState

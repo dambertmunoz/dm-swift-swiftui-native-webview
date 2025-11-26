@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 /// Example browser interface demonstrating iOS 26 WebView patterns
 public struct BrowserView: View {
     @State private var viewModel = BrowserViewModel()
@@ -127,7 +128,7 @@ public struct BrowserView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemBackground))
+        .background(Color(uiColor: .systemBackground))
     }
 
     // MARK: - Navigation Toolbar
@@ -208,3 +209,4 @@ public struct BrowserView: View {
 #Preview {
     BrowserView()
 }
+#endif
