@@ -6,31 +6,31 @@
 //
 
 import SwiftUI
+import NativeWebView
 
 /// WebView with state binding to track loading, progress, title
 struct StatefulWebViewDemo: View {
-    @State private var webState = WebViewState()
-    @State private var urlString = "https://www.apple.com"
+    @State private var webState = WebViewState.initial
     
     var body: some View {
         VStack(spacing: 0) {
             // Progress bar
             if webState.isLoading {
-                ProgressView(value: webState.estimatedProgress)
+                ProgressView(value: webState.loadingProgress)
                     .progressViewStyle(.linear)
                     .tint(.blue)
             }
             
             // WebView
             WebView(
-                url: URL(string: urlString) ?? URL(string: "https://apple.com")!,
+                url: URL(string: "https://www.apple.com")!,
                 state: $webState
             )
             
             // State info panel
             stateInfoPanel
         }
-        .navigationTitle(webState.title ?? "Loading...")
+        .navigationTitle(webState.title.isEmpty ? "Loading..." : webState.title)
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -42,7 +42,7 @@ struct StatefulWebViewDemo: View {
                 
                 Spacer()
                 
-                Text("\(Int(webState.estimatedProgress * 100))%")
+                Text("\(Int(webState.loadingProgress * 100))%")
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
             }

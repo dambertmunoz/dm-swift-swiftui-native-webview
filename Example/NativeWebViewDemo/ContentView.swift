@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NativeWebView
 
 struct ContentView: View {
     var body: some View {
@@ -35,10 +36,15 @@ struct ContentView: View {
                     }
                 }
                 
-                Section("About") {
-                    Text("iOS 26+ Native WebView Demo")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                Section {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("iOS 26+ Native WebView Demo")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                        Text("NativeWebView v\(NativeWebView.version)")
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                    }
                 }
             }
             .navigationTitle("WebView Demos")

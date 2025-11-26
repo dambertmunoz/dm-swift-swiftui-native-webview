@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NativeWebView
 
 @main
 struct NativeWebViewDemoApp: App {

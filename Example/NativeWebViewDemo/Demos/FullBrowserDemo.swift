@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import NativeWebView
 
 /// Complete browser with navigation controls using WebViewReader
 struct FullBrowserDemo: View {
     @State private var urlString = "https://www.apple.com"
-    @State private var webState = WebViewState()
+    @State private var webState = WebViewState.initial
     @State private var showShareSheet = false
     
     var body: some View {
@@ -20,23 +21,25 @@ struct FullBrowserDemo: View {
             
             // Progress
             if webState.isLoading {
-                ProgressView(value: webState.estimatedProgress)
+                ProgressView(value: webState.loadingProgress)
                     .progressViewStyle(.linear)
                     .tint(.blue)
             }
             
             // WebView with Reader for controls
             WebViewReader { proxy in
-                WebView(
-                    url: URL(string: urlString) ?? URL(string: "https://apple.com")!,
-                    state: $webState
-                )
-                
-                // Navigation toolbar
-                navigationToolbar(proxy: proxy)
+                VStack(spacing: 0) {
+                    WebView(
+                        url: URL(string: urlString) ?? URL(string: "https://apple.com")!,
+                        state: $webState
+                    )
+                    
+                    // Navigation toolbar
+                    navigationToolbar(proxy: proxy)
+                }
             }
         }
-        .navigationTitle(webState.title ?? "Browser")
+        .navigationTitle(webState.title.isEmpty ? "Browser" : webState.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -60,9 +63,6 @@ struct FullBrowserDemo: View {
                 .textInputAutocapitalization(.never)
                 .keyboardType(.URL)
                 .submitLabel(.go)
-                .onSubmit {
-                    // URL will update WebView
-                }
             
             if !urlString.isEmpty {
                 Button {
@@ -124,30 +124,6 @@ struct FullBrowserDemo: View {
         .padding(.vertical, 12)
         .background(Color(.secondarySystemGroupedBackground))
     }
-}
-
-// MARK: - WebViewReader & Proxy Placeholder
-// Remove when compiling for iOS 26+
-
-struct WebViewReader<Content: View>: View {
-    let content: (WebViewProxy) -> Content
-    
-    init(@ViewBuilder content: @escaping (WebViewProxy) -> Content) {
-        self.content = content
-    }
-    
-    var body: some View {
-        content(WebViewProxy())
-    }
-}
-
-struct WebViewProxy {
-    func goBack() { print("goBack()") }
-    func goForward() { print("goForward()") }
-    func reload() { print("reload()") }
-    func stopLoading() { print("stopLoading()") }
-    func evaluateJavaScript(_ script: String) async throws -> Any? { nil }
-    func loadHTMLString(_ html: String, baseURL: URL?) { print("loadHTML") }
 }
 
 #Preview {

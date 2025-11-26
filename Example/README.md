@@ -2,17 +2,22 @@
 
 Example app demonstrating iOS 26 SwiftUI Native WebView capabilities.
 
-## Requirements
-
-- Xcode 26+
-- iOS 26+ Simulator or Device
-- macOS 15+
-
 ## Running the Demo
 
-1. Open `NativeWebViewDemo` folder in Xcode
-2. Select iOS 26+ simulator
-3. Build and run
+### Option 1: Swift Package Manager (Recommended)
+
+```bash
+cd dm-swift-swiftui-native-webview
+swift build
+swift run NativeWebViewDemo
+```
+
+### Option 2: Xcode
+
+1. Open `Package.swift` in Xcode
+2. Select `NativeWebViewDemo` scheme
+3. Select iOS 18+ simulator
+4. Build and run (Cmd+R)
 
 ## Demo Screens
 
@@ -28,7 +33,7 @@ Example app demonstrating iOS 26 SwiftUI Native WebView capabilities.
 | Demo | Description |
 |------|-------------|
 | **Full Browser** | Complete browser with navigation controls |
-| **JavaScript Bridge** | Swift ↔ JavaScript communication |
+| **JavaScript Bridge** | Swift <-> JavaScript communication |
 | **Custom HTML** | Load and render custom HTML content |
 
 ## Key APIs Demonstrated
@@ -44,21 +49,20 @@ WebView(url: URL, state: $webState)
 WebViewReader { proxy in
     WebView(url: url)
     Button("Back") { proxy.goBack() }
-}
-
-// JavaScript bridge
-.onJavaScriptMessage("handler") { message in
-    print(message.body)
+    Button("JS") {
+        Task {
+            let title = try await proxy.evaluateJavaScript("document.title")
+        }
+    }
 }
 ```
 
-## Note
+## Architecture
 
-This demo includes placeholder implementations for iOS < 26.
-The actual `WebView`, `WebViewReader`, and `WebViewProxy` types
-are provided by SwiftUI in iOS 26+.
-
-Remove the placeholder code when compiling for iOS 26.
+The demo uses:
+- **NativeWebView library**: Core WebView components and state management
+- **Clean Architecture**: Domain entities, Use Cases, Presentation layer
+- **MVVM pattern**: ViewModels with @Observable
 
 ## Author
 

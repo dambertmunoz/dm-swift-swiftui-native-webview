@@ -1,14 +1,15 @@
 /// @author Dambert Muñoz
-/// NativeWebView - SwiftUI Native WebView for iOS 26
+/// NativeWebView - iOS 26 WebView API Demonstration
 ///
-/// This module provides utilities and examples for working with
-/// the new native WebView component introduced in iOS 26.
+/// This library demonstrates the patterns and APIs for iOS 26's native
+/// SwiftUI WebView component.
 
-import Foundation
+import SwiftUI
 
-public enum NativeWebViewInfo {
-    public static let version = "1.0.0"
-    public static let author = "Dambert Muñoz"
-    public static let minimumSwiftVersion = "6.0"
-    public static let minimumIOSVersion = "26.0"
-}
+/// Library version
+public let version = "1.0.0"
+
+/// Re-export all public types
+public typealias NativeWebViewState = WebViewState
+public typealias NativeWebViewError = WebViewError
+public typealias NativeWebViewConfiguration = WebViewConfiguration
