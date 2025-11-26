@@ -1,6 +1,7 @@
 /// @author Dambert Muñoz
 /// Tests for WebViewState
 
+import Foundation
 import Testing
 @testable import NativeWebView
 
